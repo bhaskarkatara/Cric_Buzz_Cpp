@@ -209,10 +209,11 @@ class ChoosePlayersForTeamATeamB: public AllPlayers{
 class Inning:public ChoosePlayersForTeamATeamB,public toss{
    
    public:
+   
     string curr_bolwer,curr_batsman;
     bool checkbatsmanTA = false,checkbatsmanTB = false;
     bool checkbowlerTA = false,checkbowlerTB = false;
-    int curr_Score_ = 0;
+    int curr_Score_teamA = 0,curr_Score_teamB = 0;
      int idx = 1;
 
    void FirstInning(){
@@ -256,118 +257,314 @@ class Inning:public ChoosePlayersForTeamATeamB,public toss{
                   cout<< " TeamA :- " << FteamA[0] << " is bating ..."<<endl;
                }
             }
-        
+            int wicket = 0;
+            int ball = 0;
          for(int i = 0; i < 6;i++){
-            cout<< "Press Enter to bowl ..."<<endl<<endl;
+            ball++;
+            cout<< " Press Enter to bowl ..."<<endl<<endl;
             cout<< " Bowling..." <<endl;
 
              srand(time(0));
-            int curr_val =  rand()%7;
-
-            if(curr_val == 7){ // 7 means OUT
-               
+            int curr_val =  rand()%6;
+            
+            if(curr_val == 0){ // 0 means OUT
+                wicket++;
                 cout<< curr_bolwer  << " to " << curr_batsman << " OUT!!"<<endl;
 
                 if(checkbatsmanTA) curr_batsman = FteamA[idx++];
                 else if(checkbatsmanTB) curr_batsman = FteamB[idx++];
 
+             // Add score Card
+                if(checkbatsmanTA){
+                  
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
 
-                //todo :- to add score board;
-                 
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamA << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
+
             }
             else if(curr_val == 1){
-               // todo : add run1 to the score board;
+                  curr_Score_teamA += 1;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                  cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamA << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 2){
-               // todo : add run2 to the score board;
+                curr_Score_teamA += 2;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamA << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 3){
-               // todo : add run3 to the score board;
+               curr_Score_teamA += 3;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                 cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamA << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 4){
-               // todo : add run4 to the score board;
+               curr_Score_teamA += 4;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamA << "-" << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 5){
-               // todo : add run5 to the score board;
+                curr_Score_teamA += 5;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                  cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B"  << curr_Score_teamA << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 6){
-               // todo : add run6 to the score board;
+                curr_Score_teamA += 6;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                  cout<< "  Team-A  " << curr_Score_teamA << " - " << wicket << "(" << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamA << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }  
          }
+         cout<<endl;
+           cout<<"SUMmary of first Inning........."<<endl<<endl;
+         //Summary of first Inning
+               if(checkbatsmanTA){
 
-         //todo : Summary of First Inning
+                  cout<< " Team-A " << curr_Score_teamA <<" - " << wicket <<" ( " << ball << " ) "<<endl;
+                  cout<<endl;
+                  cout<<" Team-B " << "needs " << curr_Score_teamA+1 <<" runs to win the match "<<endl;
 
+                }else if(checkbatsmanTB){
+                      cout<< " Team-B " << curr_Score_teamA <<" - " << wicket <<" ( " << ball << " ) "<<endl;
+                      cout<<endl;
+                     cout<<" Team-A " << "needs " << curr_Score_teamA+1 <<" runs to win the match "<<endl;
+
+                }
    }
+ 
+
+ // reset score
+
 
    void SecondInning(){
+    
         cout<<endl;
         cout<< "------- Second Inning Start ------ "<<endl;
+        cout<<endl;
 
         // reArrange batsman and bolwer
         if(checkbatsmanTA){
+          checkbatsmanTA = false;
+          checkbowlerTA = true;
+          checkbatsmanTB = true;
           curr_bolwer = FteamA[0];
           cout<< "Team-A " << curr_bolwer << " is bowling... "<<endl;
+         //  cout<< "Team-B " << curr_batsman << "is batting..." <<endl; 
         }
         else if(checkbatsmanTB){
+          checkbatsmanTB = false;
+          checkbatsmanTA = true;
+          checkbowlerTB = true;
           curr_bolwer = FteamB[0];
-         cout<< "Team-B " << curr_bolwer << " is bowling... "<<endl;
+           cout<< "Team-B " << curr_bolwer << " is bowling... "<<endl;
+            // cout<< "Team-A " << curr_batsman << " is bating... "<<endl;
         }
 
 
        if(checkbowlerTA){
+         checkbatsmanTA = true;
+         checkbowlerTA = false;
+         checkbowlerTB = true;
+
           curr_batsman = FteamA[0];
           cout<< "Team-A " << curr_batsman << " is batting... "<<endl;
+         //  cout<< "Team-B " << curr_bolwer << " is bowling..." <<endl;
+          
        }
        else if(checkbowlerTB){
+         checkbatsmanTB = true;
+         checkbowlerTB = false;
+         checkbowlerTA = true;
          curr_batsman = FteamB[0];
          cout<< "Team-B " << curr_batsman << " is batting... "<<endl;
+         // cout<<" Team-A" << curr_bolwer << "   is bowling..."<<endl;
        }
 
-     idx = 1;
+       idx = 1;
+       int wicket = 0;
+       int ball = 0;
          for(int i = 0; i < 6; i++){
-            
+            ball++;
              cout<< "Press Enter to bowl ..."<<endl<<endl;
              cout<< " Bowling..." <<endl;
 
               srand(time(0));
-              int curr_val =  rand()%7;
+              int curr_val =  rand()%6;
 
-            if(curr_val == 7){ // 7 means OUT
-               
+            if(curr_val == 0){ // 0 means OUT
+               wicket++;
                 cout<< curr_bolwer  << " to " << curr_batsman << " OUT!!" <<endl;
 
-               if(checkbowlerTA) curr_batsman = FteamA[idx++];
-               if(checkbowlerTB) curr_batsman = FteamB[idx++];
+               if(checkbatsmanTA) curr_batsman = FteamA[idx++];
+              else if(checkbatsmanTB) curr_batsman = FteamB[idx++];
 
 
-                //todo :- to add score board;
+               if(checkbatsmanTA){
+                  
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                         cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
                  
             }
             else if(curr_val == 1){
-               // todo : add run1 to the score board;
+                curr_Score_teamB += 1;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                        cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 2){
-               // todo : add run2 to the score board;
+               curr_Score_teamB += 2;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A "  << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                          cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 3){
-               // todo : add run3 to the score board;
+               curr_Score_teamB += 3;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                         cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 4){
-               // todo : add run4 to the score board;
+               curr_Score_teamB += 4;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A " << curr_Score_teamB << " - "  << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                        cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 5){
-               // todo : add run5 to the score board;
+               curr_Score_teamB += 5;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                        cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
             }
              else if(curr_val == 6){
-               // todo : add run6 to the score board;
-            }
-            else{
-               //todo : for zero 
-            }  
-         }
+               curr_Score_teamB += 6;
+               if(checkbatsmanTA){
+                   cout<< "----------------------------------------------------------------"<<endl;
+                   cout<< "  Team-A " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                   cout<<"-----------------------------------------------------------------"<<endl;
 
-         //todo : Summary of second Inning
-         // todo : decide which team is win
+                }else if(checkbatsmanTB){
+                      cout<< "----------------------------------------------------------------"<<endl;
+                      cout<< "  Team-B " << curr_Score_teamB << " - " << wicket << " ( " << ball <<" ) "  <<endl;
+                      cout<<"-----------------------------------------------------------------"<<endl;
+                }
+            }
+            
+         }
+        
+        cout<<"SUMmary of Second Inning........."<<endl;
+         //Summary of second Inning
+               if(checkbatsmanTA){
+
+                  cout<< " Team-A " << curr_Score_teamB <<" - " << wicket <<" ( " << ball << ")"<<endl;
+                  cout<<endl;
+
+                }else if(checkbatsmanTB){
+                      cout<< " Team-B " << curr_Score_teamB <<" - " << wicket <<" ( " << ball << ")"<<endl;
+                      cout<<endl;
+                }
+       
+        if(curr_Score_teamA > curr_Score_teamB){
+          cout<< "----Team-A WON the Match-----"<<endl;
+        }
+        else{
+          cout<< "----Team-B WON the Match-----"<<endl<<endl;
+        }
+
+        cout<< " MATCH ENDS  " <<endl;
          }
 
      void MatchConclusion(){
@@ -406,7 +603,7 @@ int main(){
       // class5
          inning->FirstInning();
          inning->SecondInning();
-         inning->MatchConclusion();
+         // inning->MatchConclusion();
          delete greet;
          delete pool;
          delete inning;
